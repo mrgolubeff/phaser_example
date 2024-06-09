@@ -1,6 +1,7 @@
 import 'phaser';
 
 
+var player;
 var platforms;
 
 class Example extends Phaser.Scene
@@ -27,6 +28,11 @@ class Example extends Phaser.Scene
         platforms.create(600, 400, 'ground');
         platforms.create(50, 250, 'ground');
         platforms.create(750, 220, 'ground');
+
+        player = this.physics.add.sprite(100, 450, 'dude');
+
+        player.setBounce(0.2);
+        player.setCollideWorldBounds(true);
     }
 }
 
