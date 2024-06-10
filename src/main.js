@@ -5,6 +5,8 @@ var player;
 var platforms;
 var cursors;
 var stars;
+var score = 0;
+var scoreText;
 
 class Example extends Phaser.Scene
 {
@@ -71,12 +73,17 @@ class Example extends Phaser.Scene
             child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
         });
 
+        scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
         this.physics.add.collider(stars, platforms);
         this.physics.add.overlap(player, stars, collectStar, null, this);
 
         function collectStar (player, star) {
             star.disableBody(true, true);
+
+            score += 10;
+            scoreText.setText('score: ' + score);
         }
+
     }
 
     update ()
